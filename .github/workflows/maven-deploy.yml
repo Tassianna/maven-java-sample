@@ -60,3 +60,5 @@ jobs:
           cd maven-java-sample
           java -jar target/*.jar
           EOF
+
+          
