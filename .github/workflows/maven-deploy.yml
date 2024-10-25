@@ -36,6 +36,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2-
 
+      - name: mvnw executable
+        run: chmod +x ./mvnw
+
       - name: Build with Maven
         run: ./mvnw -B clean verify
 
