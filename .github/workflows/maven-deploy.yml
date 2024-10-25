@@ -47,3 +47,16 @@ jobs:
           SONAR_HOST_URL: "http://35.179.183.45:9000/"
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=maven-java-sample -Dsonar.projectName='maven-java-sample'
+  
+  aws-ec2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Store Key, Sign into EC2 and Run App
+        run: |
+          touch ~/private.pem
+          echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > ~/private.pem
+          chmod 600 ~/private.pem
+          sudo ssh -i ~/private.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.AWS_EC2_PUBLIC_IP }} /bin/bash  << EOF
+          cd maven-java-sample
+          java -jar target/*.jar
+          EOF
