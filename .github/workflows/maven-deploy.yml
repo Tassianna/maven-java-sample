@@ -43,7 +43,7 @@ jobs:
         run: ./mvnw -B clean verify
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v2.1.0
         env:
           SONAR_HOST_URL: "http://35.179.183.45:9000/"
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=maven-java-sample -Dsonar.projectName='maven-java-sample'
