@@ -43,7 +43,7 @@ jobs:
         run: ./mvnw -B clean verify
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v2.2.0
+        uses: SonarSource/sonarqube-scan-action@v2.1.0
         env:
-          SONAR_HOST_URL: "http://http://35.179.183.45:9000/"
+          SONAR_HOST_URL: "http://35.179.183.45:9000/"
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
